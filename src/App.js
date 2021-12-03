@@ -1,4 +1,5 @@
 import Navbar from './component/navbar';
+import Addcategory from './component/newCategory';
 function App() {
   const xyz = () => {
     document.addEventListener('onclick', function () {
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <Addcategory />
     </div>
   );
 }

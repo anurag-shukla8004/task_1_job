@@ -12,7 +12,7 @@ function navLink(props) {
           {props.name}
           <span className="caret"></span>
         </button>
-        <ul className="dropdown-menu">
+        <ul className="dropdown-menu" style={{ left: '0%' }}>
           <li>
             <a tabindex="-1" to="#">
               HTML
