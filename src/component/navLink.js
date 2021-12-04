@@ -17,8 +17,8 @@ function navLink({ foodArr, moviesArr, bikeArr }) {
           <span className="caret"></span>
         </button>
         <ul className="dropdown-menu" style={{ left: '0%' }}>
-          <LinkComponent component={'html'} />
-          <LinkComponent component={'CSS'} />
+          <LinkComponent component={'Pizza'} />
+          <LinkComponent component={'Sandwich'} />
           {foodArr &&
             foodArr.map((ele, i) => {
               return <LinkComponent key={i} component={`${ele}`} />;
@@ -54,8 +54,8 @@ function navLink({ foodArr, moviesArr, bikeArr }) {
           <span className="caret"></span>
         </button>
         <ul className="dropdown-menu" style={{ left: '-80%' }}>
-          <LinkComponent component={'html'} />
-          <LinkComponent component={'CSS'} />
+          <LinkComponent component={'Avenger'} />
+          <LinkComponent component={'Superman'} />
           {moviesArr &&
             moviesArr.map((ele, i) => {
               return <LinkComponent key={i} component={`${ele}`} />;
@@ -91,8 +91,8 @@ function navLink({ foodArr, moviesArr, bikeArr }) {
           <span className="caret"></span>
         </button>
         <ul className="dropdown-menu" style={{ left: '-110%' }}>
-          <LinkComponent component={'html'} />
-          <LinkComponent component={'CSS'} />
+          <LinkComponent component={'Honda'} />
+          <LinkComponent component={'Royal Enfield'} />
           {bikeArr &&
             bikeArr.map((ele, i) => {
               return <LinkComponent key={i} component={`${ele}`} />;
