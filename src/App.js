@@ -1,22 +1,15 @@
 import Navbar from './component/navbar';
 import Addcategory from './component/newCategory';
+import { Provider } from 'react-redux';
+import { store } from './store';
 function App() {
-  const xyz = () => {
-    document.addEventListener('onclick', function () {
-      '.dropdown-submenu a.test'.on('click', function (e) {
-        this.next('ul').toggle();
-        e.stopPropagation();
-        e.preventDefault();
-      });
-    });
-  };
-  xyz();
-
   return (
-    <div className="App">
-      <Navbar />
-      <Addcategory />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Navbar />
+        <Addcategory />
+      </div>
+    </Provider>
   );
 }
 
