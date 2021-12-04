@@ -1,6 +1,22 @@
-import React from 'react';
-
-function newCategory() {
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addCategory } from '../action/action';
+function NewCategory({ addCategory }) {
+  const [category, setcategory] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const addCategoryHandler = () => {
+    console.log('action', inputValue, category);
+    let obj = {
+      inputValue,
+      category,
+    };
+    addCategory(obj);
+    setInputValue('');
+    setcategory('');
+  };
+  const handleSelectChange = (event) => {
+    setcategory(event.target.value);
+  };
   return (
     <>
       <div className="newCategory-box">
@@ -9,6 +25,10 @@ function newCategory() {
           <div>
             <p class="category-name">create category</p>
             <input
+              onChange={(event) => {
+                setInputValue(event.target.value);
+              }}
+              value={inputValue}
               type="text"
               name=""
               id=""
@@ -25,23 +45,31 @@ function newCategory() {
             <select
               id="cars"
               name="cars"
+              onChange={handleSelectChange}
               style={{
                 height: '30px',
                 width: '220px',
                 border: '#201f2175 solid 2px',
               }}
             >
-              <option value="volvo">Choose the category</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
+              <option value="choose the catergory">Choose the category</option>
+              <option value="Food">Food</option>
+              <option value="Movies">Movies</option>
+              <option value="Bikes">Bikes</option>
             </select>
           </div>
-          <button className="submit-button">Add Category</button>
+          <button onClick={addCategoryHandler} className="submit-button">
+            Add Category
+          </button>
         </div>
       </div>
     </>
   );
 }
+const mapStateToProps = (state) => ({});
 
-export default newCategory;
+const mapDispatchToProps = {
+  addCategory,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewCategory);

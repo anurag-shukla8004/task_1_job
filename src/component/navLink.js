@@ -1,6 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import LinkComponent from './navLinkCategory';
 
-function navLink(props) {
+function navLink({ foodArr, moviesArr, bikeArr }) {
+  console.log('shiv ', foodArr);
+
   return (
     <>
       <div className="dropdown">
@@ -9,54 +13,100 @@ function navLink(props) {
           type="button"
           data-toggle="dropdown"
         >
-          {props.name}
+          Food
           <span className="caret"></span>
         </button>
         <ul className="dropdown-menu" style={{ left: '0%' }}>
-          <li>
-            <a tabindex="-1" to="#">
-              HTML
-            </a>
-          </li>
-          <li>
-            <a tabindex="-1" to="#">
-              CSS
-            </a>
-          </li>
+          <LinkComponent component={'html'} />
+          <LinkComponent component={'CSS'} />
+          {foodArr &&
+            foodArr.map((ele, i) => {
+              return <LinkComponent key={i} component={`${ele}`} />;
+            })}
           <li className="dropdown-submenu">
             <a className="test" tabindex="-1" to="#">
               New dropdown <span className="caret"></span>
             </a>
             <ul className="dropdown-menu">
-              <li>
-                <a tabindex="-1" to="#">
-                  2nd level dropdown
-                </a>
-              </li>
-              <li>
-                <a tabindex="-1" to="#">
-                  2nd level dropdown
-                </a>
-              </li>
+              <LinkComponent component={'2nd level dropdown'} />
+              <LinkComponent component={'2nd level dropdown'} />
+
               <li className="dropdown-submenu">
                 <a className="test" to="#">
                   Another dropdown <span className="caret"></span>
                 </a>
                 <ul className="dropdown-menu">
-                  <li>
-                    <a to="#">3rd level dropdown</a>
-                  </li>
-                  <li>
-                    <a to="#">3rd level dropdown</a>
-                  </li>
+                  <LinkComponent component={'3nd level dropdown'} />
+                  <LinkComponent component={'3nd level dropdown'} />
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
       </div>
+      <div className="dropdown">
+        <button
+          className="btn btn-default dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+        >
+          Movies
+          <span className="caret"></span>
+        </button>
+        <ul className="dropdown-menu" style={{ left: '-80%' }}>
+          <LinkComponent component={'html'} />
+          <LinkComponent component={'CSS'} />
+          {moviesArr &&
+            moviesArr.map((ele, i) => {
+              return <LinkComponent key={i} component={`${ele}`} />;
+            })}
+          <li className="dropdown-submenu">
+            <a className="test" tabindex="-1" to="#">
+              New dropdown <span className="caret"></span>
+            </a>
+            <ul className="dropdown-menu">
+              <LinkComponent component={'2nd level dropdown'} />
+              <LinkComponent component={'2nd level dropdown'} />
+
+              <li className="dropdown-submenu">
+                <a className="test" to="#">
+                  Another dropdown <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu">
+                  <LinkComponent component={'3nd level dropdown'} />
+                  <LinkComponent component={'3nd level dropdown'} />
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div className="dropdown">
+        <button
+          className="btn btn-default dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+        >
+          Bike
+          <span className="caret"></span>
+        </button>
+        <ul className="dropdown-menu" style={{ left: '-110%' }}>
+          <LinkComponent component={'html'} />
+          <LinkComponent component={'CSS'} />
+          {bikeArr &&
+            bikeArr.map((ele, i) => {
+              return <LinkComponent key={i} component={`${ele}`} />;
+            })}
+        </ul>
+      </div>
     </>
   );
 }
 
-export default navLink;
+const mapStateToProps = (state) => ({
+  foodArr: state.foodArr,
+  moviesArr: state.moviesArr,
+  bikeArr: state.bikeArr,
+});
+
+export default connect(mapStateToProps)(navLink);
